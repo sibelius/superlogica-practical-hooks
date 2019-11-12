@@ -127,6 +127,7 @@ export { default as theme } from './theme'
 
 - Bring stateful logic and side effects to functions components
 - it is all about co-location
+- Compose state and effects
 
 ---
 
@@ -149,6 +150,13 @@ export { default as theme } from './theme'
 ---
 
 # Primitive Hooks
+
+---
+
+### Rules of Hooks
+
+- Only Call Hooks at the Top Level (Don’t call Hooks inside loops, conditions, or nested functions)
+- Only Call Hooks from React Functions
 
 ---
 
@@ -183,9 +191,99 @@ export { default as theme } from './theme'
 
 ---
 
-### useEffect
+### old style contextType class
+
+<Img src='./img/contextType.png' width={600} />
 
 ---
+
+
+### Component Lifecycle
+
+<Img src='./img/lifecycle.png' width={1000} />
+
+---
+
+### Component Lifecycle (Full)
+
+<Img src='./img/lifecycleFull.png' width={800} />
+
+---
+
+### useEffect
+
+- replaces the use of component lifecycles
+- let you hook in commit phase
+
+---
+
+### useEffect - examples
+
+- data fetching (use suspense approach instead)
+- subscriptions
+- manually changing the DOM
+
+---
+
+### Effect without cleanup (lifecycle)
+
+<Img src='./img/lifecycleNoCleanup.png' width={500} />
+
+---
+
+### Effect without cleanup (useEffect)
+
+<Img src='./img/useEffectNoCleanup.png' width={500} />
+
+---
+
+### Effect with cleanup (lifecycle)
+
+<Img src='./img/lifecycleCleanup.png' width={350} />
+
+---
+
+### Effect with cleanup (useEffect)
+
+<Img src='./img/useEffectCleanup.png' width={600} />
+
+---
+
+### useReducer
+
+---
+
+### useCallback
+
+### useMemo
+
+### useRef
+
+## useLayoutEffect
+
+## useImperativeHandle
+
+## useDebugValue
+
+
+## Redux
+
+## useSelector -> mapStateToProps
+- extract data from redux store
+
+
+## reselect (memoize selector)
+
+## useDispatch - used to dispatch actions to redux store
+
+## useStore - return the store passed to Provider
+
+
+## Fast Refresh
+
+- deep dive in fast refresh structure (how it works?)
+- why is it different from react hot loader? (hmr)
+
 
 ### What's Next?
 
@@ -193,6 +291,8 @@ export { default as theme } from './theme'
 
 ## References
 
+- [Reactjs Docs](https://reactjs.org/docs/)
+- [Redux Docs](https://react-redux.js.org/next/api/hooks)
 - [threepointone tweet about hooks](https://twitter.com/threepointone/status/1056594421079261185)
 - [gif hooks tweet](https://twitter.com/prchdk/status/1056960391543062528)
 
