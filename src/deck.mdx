@@ -53,7 +53,7 @@ export { default as theme } from './theme'
 ### React Components
 
 - Declarative
-- Encapsulate state
+- Encapsulated state
 - Composable
 
 ---
@@ -65,9 +65,9 @@ export { default as theme } from './theme'
 
 ---
 
-### Encapsulate State
+### Encapsulated State
 
-- Each component can manage their own state
+- Each component manage its own state
 
 ---
 
@@ -118,16 +118,16 @@ export { default as theme } from './theme'
 
 ### Component Dichotomy
 
-- classes was used to represent stateful logic
-- functions was used to represent pure logics
+- classes were used to represent stateful logic
+- functions were used to represent pure logic
 
 ---
 
 ### React Hooks
 
-- Bring stateful logic and side effects to functions components
+- Bring stateful logic and side effects to function components
 - it is all about co-location
-- Compose state and effects
+- Compose and share state and effects
 
 ---
 
@@ -156,7 +156,8 @@ export { default as theme } from './theme'
 ### Rules of Hooks
 
 - Only Call Hooks at the Top Level (Don’t call Hooks inside loops, conditions, or nested functions)
-- Only Call Hooks from React Functions
+- Only Call Hooks from React Functional Components
+- Do not work with classes
 
 ---
 
@@ -186,7 +187,7 @@ export { default as theme } from './theme'
 
 ### useContext
 
-- reads a context value on render
+- reads a context value on render from the closest `<Provider>`
 - it will be rerendered when context value changes
 
 ---
@@ -250,7 +251,7 @@ export { default as theme } from './theme'
 
 ---
 
-### useEffect Optimization
+### Lifecycle Optimization
 
 <Img src='./img/useEffectOptimizationLifecycle.png' width={1000} />
 
@@ -264,7 +265,7 @@ export { default as theme } from './theme'
 
 ### Hooks Array of Dependencies
 
-- Some hooks receives an array of dependencies
+- Some hooks receive an array of dependencies
 - it is used to avoid closure pitfalls
 - it will memoize hooks based on deps
 
@@ -429,62 +430,6 @@ export { default as theme } from './theme'
 
 ---
 
-# Redux Hooks
-
----
-
-### useSelector
-
-- extract data from from redux store state
-- equivalent to `mapStateToProps`
-- still needs `reselect` to memoize selectors
-
----
-
-### useSelector
-
-<Img src='./img/useSelector.png' width={900} />
-
----
-
-### mapStateToProps (old style)
-
-<Img src='./img/mapStateToProps.png' width={750} />
-
----
-
-## useDispatch
-
-- used to dispatch actions to redux store
-- equivalent to `mapDispatchToProps`
-
----
-
-## useDispatch
-
-<Img src='./img/useDispatch.png' width={750} />
-
----
-
-### mapDispatchToProps (old style)
-
-<Img src='./img/mapDispatchToProps.png' width={600} />
-
----
-
-## useStore
-
-- return the store passed to Provider
-- try to avoid this
-
----
-
-## useStore
-
-<Img src='./img/useStore.png' width={900} />
-
----
-
 # Custom Hooks
 
 ---
@@ -521,6 +466,62 @@ export { default as theme } from './theme'
 ### usePrompt
 
 <Img src='./img/usePrompt.png' width={300} />
+
+---
+
+# Redux Hooks
+
+---
+
+### useSelector
+
+- extract data from from redux store state
+- equivalent/replacement to `mapStateToProps`
+- still needs `reselect` to memoize selectors
+
+---
+
+### useSelector
+
+<Img src='./img/useSelector.png' width={900} />
+
+---
+
+### mapStateToProps (old style)
+
+<Img src='./img/mapStateToProps.png' width={750} />
+
+---
+
+## useDispatch
+
+- used to dispatch actions to redux store
+- equivalent/replacement to `mapDispatchToProps`
+
+---
+
+## useDispatch
+
+<Img src='./img/useDispatch.png' width={750} />
+
+---
+
+### mapDispatchToProps (old style)
+
+<Img src='./img/mapDispatchToProps.png' width={600} />
+
+---
+
+## useStore
+
+- return the store passed to Provider
+- try to avoid this
+
+---
+
+## useStore
+
+<Img src='./img/useStore.png' width={900} />
 
 ---
 
