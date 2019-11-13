@@ -197,7 +197,6 @@ export { default as theme } from './theme'
 
 ---
 
-
 ### Component Lifecycle
 
 <Img src='./img/lifecycle.png' width={1000} />
@@ -214,6 +213,8 @@ export { default as theme } from './theme'
 
 - replaces the use of component lifecycles
 - let you hook in commit phase
+- happen "after render"
+- it is about synchronization
 
 ---
 
@@ -249,43 +250,316 @@ export { default as theme } from './theme'
 
 ---
 
+### useEffect Optimization
+
+<Img src='./img/useEffectOptimizationLifecycle.png' width={1000} />
+
+---
+
+### useEffect Optimization
+
+<Img src='./img/useEffectOptimization.png' width={1000} />
+
+---
+
+### Hooks Array of Dependencies
+
+- Some hooks receives an array of dependencies
+- it is used to avoid closure pitfalls
+- it will memoize hooks based on deps
+
+---
+
+### Eslint Plugin React Hooks
+
+- rules-of-hooks
+- exhaustive-deps: make sure all deps are on array of deps
+
+---
+
 ### useReducer
+
+- alternative from useState
+- better for states that change together
+- redux like api
+
+---
+
+### useReducer
+
+<Img src='./img/reducer.png' width={300} />
+
+---
+
+### useReducer
+
+<Img src='./img/useReducer.png' width={300} />
 
 ---
 
 ### useCallback
 
+- memoize a `callback` (function)
+- avoid unnecessary renders
+
+---
+
+### useCallback
+
+<Img src='./img/useCallback.png' width={700} />
+
+---
+
 ### useMemo
+
+- memoize a `value`
+- only recompute if array of deps changes
+- used for optimizations and avoid unnecessary re-renders
+
+---
+
+### useMemo
+
+<Img src='./img/useMemo.png' width={1000} />
+
+---
 
 ### useRef
 
-## useLayoutEffect
+- store `mutable` ref object
+- persist for the full lifetime of the component
+- "instance" variable
+- can store a DOM ref
+- doesn’t notify you when its content changes
 
-## useImperativeHandle
+---
 
-## useDebugValue
+### useRef - mutable value
 
+<Img src='./img/useIsMounted.png' width={500} />
 
-## Redux
+---
 
-## useSelector -> mapStateToProps
-- extract data from redux store
+### useRef - DOM ref
 
+<Img src='./img/domRef.png' width={700} />
 
-## reselect (memoize selector)
+---
 
-## useDispatch - used to dispatch actions to redux store
+### useRef - instance variable
 
-## useStore - return the store passed to Provider
+<Img src='./img/useRefInstance.png' width={450} />
 
+---
 
-## Fast Refresh
+### Callback Ref
 
-- deep dive in fast refresh structure (how it works?)
-- why is it different from react hot loader? (hmr)
+<Img src='./img/callbackRef.png' width={600} />
 
+---
+
+### useImperativeHandle
+
+- used to customize the instance of a value (ref)
+- imperative code should be avoided in most cases
+
+---
+
+### useImperativeHandle
+
+<Img src='./img/useImperativeHandle.png' width={550} />
+
+---
+
+### useLayoutEffect
+
+- similar to useEffect
+- synchronous
+- used to read layout
+- does not work in SSR
+- can be used to avoid flicker
+
+---
+
+### useLayoutEffect
+
+<Img src='./img/useLayoutEffect.png' width={400} />
+
+---
+
+### useDebugValue
+
+- display a custom label on React Dev Tools
+
+---
+
+### useDebugValue
+
+<Img src='./img/useDebugValue.png' width={650} />
+
+---
+
+# Concurrent Mode Hooks
+
+---
+
+### useTransition
+
+- avoid loading state when transition to the next screen
+- only show loading indicator if transition takes too long
+
+---
+
+### useTransition
+
+<Img src='./img/useTransition.png' width={550} />
+
+---
+
+### useDeferredValue
+
+- show a `lag behind` value
+- useful to keep interface responsive
+
+---
+
+### useDeferredValue
+
+<Img src='./img/useDeferredValue.png' width={750} />
+
+---
+
+# Redux Hooks
+
+---
+
+### useSelector
+
+- extract data from from redux store state
+- equivalent to `mapStateToProps`
+- still needs `reselect` to memoize selectors
+
+---
+
+### useSelector
+
+<Img src='./img/useSelector.png' width={900} />
+
+---
+
+### mapStateToProps (old style)
+
+<Img src='./img/mapStateToProps.png' width={750} />
+
+---
+
+## useDispatch
+
+- used to dispatch actions to redux store
+- equivalent to `mapDispatchToProps`
+
+---
+
+## useDispatch
+
+<Img src='./img/useDispatch.png' width={750} />
+
+---
+
+### mapDispatchToProps (old style)
+
+<Img src='./img/mapDispatchToProps.png' width={600} />
+
+---
+
+## useStore
+
+- return the store passed to Provider
+- try to avoid this
+
+---
+
+## useStore
+
+<Img src='./img/useStore.png' width={900} />
+
+---
+
+# Custom Hooks
+
+---
+
+### Custom Hooks
+
+- a function that starts with `use`
+- a function that may call other hooks
+
+---
+
+# Custom Hooks Examples
+
+---
+
+### usePrevious
+
+<Img src='./img/usePrevious.png' width={700} />
+
+---
+
+### useToday
+
+<Img src='./img/useToday.png' width={700} />
+
+---
+
+### useWhyDidUpdate
+
+<Img src='./img/useWhyDidUpdate.png' width={600} />
+
+---
+
+### usePrompt
+
+<Img src='./img/usePrompt.png' width={300} />
+
+---
+
+# Hooks Everywhere
+
+---
+
+# Fast Refresh
+
+---
+
+### Fast Refresh
+
+- new implementation of "hot reloading"
+- available on react native >=0.61.x
+- local state is preserved only for functions components
+- unify "live reloading" and "hot reload"
+
+---
+
+### Fast Refresh
+
+- not available on react web yet
+- better error handling
+- force reset using a comment syntax `@refresh reset`
+
+---
+
+### How it works?
+
+- `React Refresh Babel` plugin to register components and hooks
+- `React Refresh Runtime` to update/refresh components that changed
+
+---
 
 ### What's Next?
+
+- maybe more primitive hooks in concurrent mode?
+- fast refresh on web
 
 ---
 
@@ -295,6 +569,18 @@ export { default as theme } from './theme'
 - [Redux Docs](https://react-redux.js.org/next/api/hooks)
 - [threepointone tweet about hooks](https://twitter.com/threepointone/status/1056594421079261185)
 - [gif hooks tweet](https://twitter.com/prchdk/status/1056960391543062528)
+- [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
+
+---
+
+## References
+
+- [My Wishlist For Hot Reloading](https://overreacted.io/my-wishlist-for-hot-reloading/)
+- [Why isn't X a Hook](https://overreacted.io/why-isnt-x-a-hook/)
+- [Writing Resilient Components](https://overreacted.io/writing-resilient-components/)
+- [Eslint Plugin React Hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+- [When to useLayoutEffect instead of useEffect](https://daveceddia.com/useeffect-vs-uselayouteffect/)
+- [Fast Refresh](https://facebook.github.io/react-native/docs/fast-refresh)
 
 ---
 
